@@ -1,4 +1,4 @@
 # kevlongair.github.io
 Website
 
-Copyright 2016 Kevin Longair
+Copyright 2023 Kevin Longair
