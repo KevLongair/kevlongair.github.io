@@ -406,7 +406,7 @@ label.margin-toggle:not(.sidenote-number) {
     height: 100%;
 }
 
-@media (max-width: 760px) or (orientation: portrait) {
+@media (max-width: 640px) {
     body {
         width: 84%;
         padding-left: 8%;
