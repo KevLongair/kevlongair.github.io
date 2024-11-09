@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+    <head>
+        <title>Main Map</title>
+        <meta property="og:description" content="Main map." />
+        <meta charset="utf-8">
+        <link rel='stylesheet' href='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css'/>
+        <link rel="stylesheet" href="styling.css">
+        <script src='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js'></script>
+        <script src='GPXProcessor.js'></script>
+        <script src='MainMap.js'></script>
+    </head>
+    <body>
+        <div class="container">
+            <div id='map' class='route-map' style='width: 1200px; height: 900px;'></div>
+            <div id='results' class='results-table'>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Name</td><td>Time</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
