@@ -1,19 +1,32 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
 .container {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
+  height: 100%;
 }
 
 .route-map {
-    flex: 50%;
+  flex: 70%;
 }
 
 .results-table {
-    flex: 50%;
+  flex: 30%;
 }
 
 /* Responsive layout - makes a one column layout instead of a two-column layout */
 @media (max-width: 800px) {
-  .route-map, .results-table {
+  /*.route-map, .results-table {
     flex: 100%;
+  }*/
+  .container {
+    flex-direction: column;
   }
 }
