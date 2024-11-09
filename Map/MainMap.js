@@ -115,6 +115,15 @@ function FindBoundsOfRaceSummaries(raceSummaries) {
 async function CreateMap(raceSummaries) {
     let raceBounds = FindBoundsOfRaceSummaries(raceSummaries);
 
+    // calculated via geojson.io
+    //  just to find 'corners' of UK
+    const UKBounds = [
+        [-8.387823421597375,
+          49.92024040107307],
+        [1.7688261027427359,
+          58.79845924465005]
+        ];
+
     const map = new maplibregl.Map({
         container: 'map',
         style: {
@@ -137,6 +146,8 @@ async function CreateMap(raceSummaries) {
             }],
         },
         bounds: raceBounds,
+        maxBounds: UKBounds,
+        dragRotate: false
     });
 
     map.on('load', () => {
