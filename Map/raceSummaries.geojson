@@ -1,0 +1,572 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -2.00804,
+                    53.542016
+                ]
+            },
+            "properties": {
+                "filename": "AldermansAscent",
+                "title": "Alderman's Ascent",
+                "time": "2024-07-04T18:31:43+00:00",
+                "startingPoint": [
+                    -2.008040137588978,
+                    53.54201621375978
+                ],
+                "minBound": [
+                    -2.008654111996293,
+                    53.53585853241384
+                ],
+                "maxBound": [
+                    -1.9758076965808868,
+                    53.54697679169476
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -1.942955,
+                    53.339238
+                ]
+            },
+            "properties": {
+                "filename": "BigStone",
+                "title": "Big Stone",
+                "time": "2024-07-25T18:30:27+00:00",
+                "startingPoint": [
+                    -1.9429549109190702,
+                    53.3392377756536
+                ],
+                "minBound": [
+                    -1.9483355898410082,
+                    53.338856901973486
+                ],
+                "maxBound": [
+                    -1.9388151727616787,
+                    53.35680557414889
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -1.996404,
+                    53.429781
+                ]
+            },
+            "properties": {
+                "filename": "CharlesworthAndChisworthCarnival",
+                "title": "Charlesworth & Chisworth Carnival",
+                "time": "2024-07-13T13:31:46+00:00",
+                "startingPoint": [
+                    -1.9964044634252787,
+                    53.429780853912234
+                ],
+                "minBound": [
+                    -1.9989641290158033,
+                    53.41776422224939
+                ],
+                "maxBound": [
+                    -1.9721729680895805,
+                    53.4307031147182
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -1.954017,
+                    53.382633
+                ]
+            },
+            "properties": {
+                "filename": "ChickenRun",
+                "title": "Chicken Run",
+                "time": "2024-03-23T11:01:22+00:00",
+                "startingPoint": [
+                    -1.954017011448741,
+                    53.382632564753294
+                ],
+                "minBound": [
+                    -1.985224261879921,
+                    53.38248001411557
+                ],
+                "maxBound": [
+                    -1.9510075729340315,
+                    53.41653350740671
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -1.782265,
+                    53.33984
+                ]
+            },
+            "properties": {
+                "filename": "DCRODash",
+                "title": "D C R O Dash",
+                "time": "2024-06-19T18:30:00+00:00",
+                "startingPoint": [
+                    -1.7822649423033,
+                    53.33983968012035
+                ],
+                "minBound": [
+                    -1.827920749783516,
+                    53.322638757526875
+                ],
+                "maxBound": [
+                    -1.7813035380095243,
+                    53.33983968012035
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -1.964922,
+                    53.336382
+                ]
+            },
+            "properties": {
+                "filename": "EcclesPike",
+                "title": "Eccles Pike",
+                "time": "2024-08-14T18:31:51+00:00",
+                "startingPoint": [
+                    -1.9649216160178185,
+                    53.33638214506209
+                ],
+                "minBound": [
+                    -1.9675094448029995,
+                    53.32792857661843
+                ],
+                "maxBound": [
+                    -1.9482121244072914,
+                    53.33693828433752
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -1.941241,
+                    53.377283
+                ]
+            },
+            "properties": {
+                "filename": "GroovyKinderLove",
+                "title": "Groovy Kinder Love",
+                "time": "2024-09-14T10:00:11+00:00",
+                "startingPoint": [
+                    -1.9412413984537125,
+                    53.377282647415996
+                ],
+                "minBound": [
+                    -1.948948223143816,
+                    53.35779530927539
+                ],
+                "maxBound": [
+                    -1.868771379813552,
+                    53.41046316549182
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -1.65047,
+                    53.331124
+                ]
+            },
+            "properties": {
+                "filename": "HathersageGala",
+                "title": "Hathersage Gala",
+                "time": "2024-07-08T18:35:51+00:00",
+                "startingPoint": [
+                    -1.6504700761288404,
+                    53.33112417720258
+                ],
+                "minBound": [
+                    -1.6508211102336645,
+                    53.322203401476145
+                ],
+                "maxBound": [
+                    -1.6156140994280577,
+                    53.33687324076891
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -1.951386,
+                    53.43251
+                ]
+            },
+            "properties": {
+                "filename": "HerodFarm",
+                "title": "Herod Farm Race",
+                "time": "2024-04-17T18:31:38+00:00",
+                "startingPoint": [
+                    -1.9513859320431948,
+                    53.43251025304198
+                ],
+                "minBound": [
+                    -1.9686476234346628,
+                    53.427730053663254
+                ],
+                "maxBound": [
+                    -1.9510900508612394,
+                    53.43622175976634
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -1.750451,
+                    53.348514
+                ]
+            },
+            "properties": {
+                "filename": "Hope",
+                "title": "Hope",
+                "time": "2024-06-26T18:31:35+00:00",
+                "startingPoint": [
+                    -1.7504511773586273,
+                    53.348513692617416
+                ],
+                "minBound": [
+                    -1.7508492339402437,
+                    53.34809074178338
+                ],
+                "maxBound": [
+                    -1.7153633572161198,
+                    53.37511198595166
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -1.938105,
+                    53.594713
+                ]
+            },
+            "properties": {
+                "filename": "IanRobertsMemorial",
+                "title": "Ian Roberts Memorial",
+                "time": "2024-03-03T11:10:16+00:00",
+                "startingPoint": [
+                    -1.938105309382081,
+                    53.594712652266026
+                ],
+                "minBound": [
+                    -1.9607271440327168,
+                    53.575555477291346
+                ],
+                "maxBound": [
+                    -1.9321819860488176,
+                    53.596252324059606
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -2.836929,
+                    54.428657
+                ]
+            },
+            "properties": {
+                "filename": "KentmereHorseshoe",
+                "title": "Kentmere Horseshoe",
+                "time": "2024-07-21T11:59:59+00:00",
+                "startingPoint": [
+                    -2.8369290567934513,
+                    54.428656697273254
+                ],
+                "minBound": [
+                    -2.8767073899507523,
+                    54.42865652963519
+                ],
+                "maxBound": [
+                    -2.818531785160303,
+                    54.49164250865579
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -1.945489,
+                    53.379503
+                ]
+            },
+            "properties": {
+                "filename": "KinderDownfall",
+                "title": "Kinder Downfall Race",
+                "time": "2024-04-21T10:31:40+00:00",
+                "startingPoint": [
+                    -1.9454890117049217,
+                    53.379503013566136
+                ],
+                "minBound": [
+                    -1.9454941246658564,
+                    53.37156057357788
+                ],
+                "maxBound": [
+                    -1.876274524256587,
+                    53.40772588737309
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -1.949401,
+                    53.381598
+                ]
+            },
+            "properties": {
+                "filename": "KinderTrog",
+                "title": "Kinder Trog",
+                "time": "2024-06-30T10:01:06+00:00",
+                "startingPoint": [
+                    -1.9494010973721743,
+                    53.381598237901926
+                ],
+                "minBound": [
+                    -1.9653821177780628,
+                    53.35530135780573
+                ],
+                "maxBound": [
+                    -1.8762635439634323,
+                    53.41223040595651
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -3.171796,
+                    56.107311
+                ]
+            },
+            "properties": {
+                "filename": "KirkcaldyHalf",
+                "title": "Kirkcaldy Parks Running Festival (Half Marathon)",
+                "time": "2024-08-25T09:00:25+00:00",
+                "startingPoint": [
+                    -3.1717961467802525,
+                    56.10731050372124
+                ],
+                "minBound": [
+                    -3.209908911958337,
+                    56.10208187252283
+                ],
+                "maxBound": [
+                    -3.1184774357825518,
+                    56.13950262777507
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -1.933217,
+                    53.376807
+                ]
+            },
+            "properties": {
+                "filename": "MountFamine",
+                "title": "Mount Famine Race",
+                "time": "2024-05-18T10:01:22+00:00",
+                "startingPoint": [
+                    -1.9332174025475979,
+                    53.37680705823004
+                ],
+                "minBound": [
+                    -1.9435120560228825,
+                    53.35781240835786
+                ],
+                "maxBound": [
+                    -1.906568482518196,
+                    53.37821756489575
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -1.920802,
+                    53.451713
+                ]
+            },
+            "properties": {
+                "filename": "ShelfMoor",
+                "title": "Shelf Moor",
+                "time": "2024-09-21T09:59:12+00:00",
+                "startingPoint": [
+                    -1.9208021275699139,
+                    53.45171285793185
+                ],
+                "minBound": [
+                    -1.9320338778197765,
+                    53.44408071599901
+                ],
+                "maxBound": [
+                    -1.8674636352807283,
+                    53.45892841927707
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -1.981868,
+                    53.27515
+                ]
+            },
+            "properties": {
+                "filename": "ShiningTor",
+                "title": "Shining Tor",
+                "time": "2024-05-08T18:32:34+00:00",
+                "startingPoint": [
+                    -1.9818681478500366,
+                    53.27515007928014
+                ],
+                "minBound": [
+                    -2.009355090558529,
+                    53.25544590130448
+                ],
+                "maxBound": [
+                    -1.9753886852413416,
+                    53.28727693296969
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -1.989556,
+                    53.569241
+                ]
+            },
+            "properties": {
+                "filename": "TheCakeRace",
+                "title": "The Cake Race (10 miles)",
+                "time": "2024-05-11T10:11:31+00:00",
+                "startingPoint": [
+                    -1.9895555265247822,
+                    53.56924097053707
+                ],
+                "minBound": [
+                    -1.9895683508366346,
+                    53.56923124752939
+                ],
+                "maxBound": [
+                    -1.9142500776797533,
+                    53.59388108365238
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -1.794429,
+                    53.255983
+                ]
+            },
+            "properties": {
+                "filename": "Tideswell",
+                "title": "Tideswell",
+                "time": "2024-06-21T18:31:23+00:00",
+                "startingPoint": [
+                    -1.7944288440048695,
+                    53.25598334893584
+                ],
+                "minBound": [
+                    -1.834307424724102,
+                    53.245028955861926
+                ],
+                "maxBound": [
+                    -1.7944288440048695,
+                    53.258204720914364
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -1.93498,
+                    53.254265
+                ]
+            },
+            "properties": {
+                "filename": "Windgather",
+                "title": "Windgather",
+                "time": "2024-10-13T09:59:20+00:00",
+                "startingPoint": [
+                    -1.9349797815084457,
+                    53.25426514260471
+                ],
+                "minBound": [
+                    -2.0093825832009315,
+                    53.24703600257635
+                ],
+                "maxBound": [
+                    -1.9349665381014347,
+                    53.30497884191573
+                ]
+            }
+        }
+    ]
+}

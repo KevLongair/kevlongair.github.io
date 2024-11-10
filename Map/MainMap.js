@@ -49,53 +49,24 @@ function ShowRace(map, raceData) {
     );
 }
 
-function ClickedRaceSummary(map, raceSummary) {
+function ClickedRaceSummary(map, filename) {
     let dir = "2024/"
-    fetch(dir + raceSummary.filename + '.geojson')
+    fetch(dir + filename + '.geojson')
         .then(response => response.json())
         .then((data) => {
             ShowRace(map, data);
         });
 }
 
-function CreateMarkers(map, raceSummaries) {
-    for (let i in raceSummaries) {
-        let summary = raceSummaries[i];
-
-        const link = document.createElement('a');
-        var linkText = document.createTextNode(summary.title);
-        link.appendChild(linkText);
-        link.title = summary.title;
-        link.href = "#";
-        link.onclick = function MyClick() {
-            ClickedRaceSummary(map, summary);
-        }
-
-        // create DOM element for the marker
-        /*const el = document.createElement('div');
-        el.classname = 'kev-marker';
-        el.appendChild(link);*/
-        const el = link;
-
-        let popup = new maplibregl.Popup()
-            .setDOMContent(el);
-        
-        const marker = new maplibregl.Marker()
-          .setLngLat(summary.startingPoint)
-          .setPopup(popup)
-          .addTo(map);
-    }
-}
-
-function FindBoundsOfRaceSummaries(raceSummaries) {
+function FindBoundsOfGeoRaceSummaries(raceSummaries) {
     let longitudeList = [ ]
     let latitudeList = [ ]
 
-    for (let i in raceSummaries) {
-        let summary = raceSummaries[i];
+    for (let i in raceSummaries.features) {
+        let summary = raceSummaries.features[i];
 
-        longitudeList.push( summary.startingPoint[0] );
-        latitudeList.push( summary.startingPoint[1] );
+        longitudeList.push( summary.geometry.coordinates[0] );
+        latitudeList.push( summary.geometry.coordinates[1] );
     }
 
     // find bounding box of places, we want the map to show the whole lot
@@ -112,8 +83,84 @@ function FindBoundsOfRaceSummaries(raceSummaries) {
     ];
 }
 
-async function CreateMap(raceSummaries) {
-    let raceBounds = FindBoundsOfRaceSummaries(raceSummaries);
+async function CreateSymbols(map, raceSummaries) {
+    map.addSource('symbols', {
+        'type': 'geojson',
+        'data': raceSummaries
+    });
+
+    map.addLayer({
+        'id': 'poi-labels',
+        'type': 'symbol',
+        'source': 'symbols',
+        'layout': {
+            'text-field': ['get', 'title'],
+            'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+            'text-radial-offset': 0.5,
+            'text-justify': 'auto',
+            'text-font': ['Noto Sans Regular'],
+            'text-anchor': 'bottom',
+            //'text-overlap': 'always',
+            'text-optional': true,
+            'icon-image': 'custom-marker',
+            'icon-size': 1.0,
+            'icon-anchor': 'bottom',
+            'icon-allow-overlap': true,
+            'icon-overlap': 'always'
+            /*,
+            'cluster': true,
+            'clusterMaxZoom': 14, // Max zoom to cluster points on
+            'clusterRadius': 50*/
+            },
+        'paint': {
+            'text-halo-color': '#fff',
+            'text-halo-width': 1,
+        }
+    });
+
+    map.on('click', 'poi-labels', (e) => {
+        map.flyTo({
+            center: e.features[0].geometry.coordinates,
+            zoom: 12
+        });
+
+        let filename = e.features[0].properties.filename;
+
+        const link = document.createElement('a');
+        var linkText = document.createTextNode(e.features[0].properties.title);
+        link.appendChild(linkText);
+        link.title = e.features[0].properties.title;
+        link.href = "#";
+        link.onclick = function MyClick() {
+            ClickedRaceSummary(map, filename);
+        }
+
+        // create DOM element for the marker
+        /*const el = document.createElement('div');
+        el.classname = 'kev-marker';
+        el.appendChild(link);*/
+        let el = link;
+
+        let popup = new maplibregl.Popup()
+            .setLngLat(e.features[0].geometry.coordinates)
+            .setDOMContent(el)
+            .addTo(map);
+
+    });
+
+     // Change the cursor to a pointer when the it enters a feature in the 'symbols' layer.
+    map.on('mouseenter', 'poi-labels', () => {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+
+    // Change it back to a pointer when it leaves.
+    map.on('mouseleave', 'poi-labels', () => {
+        map.getCanvas().style.cursor = '';
+    });
+}
+
+async function CreateGeoMap(raceSummaries) {
+    let raceBounds = FindBoundsOfGeoRaceSummaries(raceSummaries);
 
     // calculated via geojson.io
     //  just to find 'corners' of UK
@@ -144,22 +191,30 @@ async function CreateMap(raceSummaries) {
                 type: 'raster',
                 source: 'osm'
             }],
+            glyphs: "./fonts/{fontstack}/{range}.pbf",
         },
         bounds: raceBounds,
         maxBounds: UKBounds,
         dragRotate: false
     });
 
-    map.on('load', () => {
-        CreateMarkers(map, raceSummaries);
+    // disable rotation for touch controls (mobile)
+    map.touchZoomRotate.disableRotation();
+
+    map.on('load', async () => {
+        // Add an image to use as a custom marker
+        const image = await map.loadImage('./icons/MapPin.png');
+        map.addImage('custom-marker', image.data)
+
+        CreateSymbols(map, raceSummaries);
     });
 }
 
 async function LoadedRaceSummaries() {
-    await fetch("raceSummaries.json")
+    await fetch("raceSummaries.geojson")
         .then(response => response.json())
         .then((data) => {
-            CreateMap(data);
+            CreateGeoMap(data);
         });
 }
 
