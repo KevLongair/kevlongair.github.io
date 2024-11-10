@@ -1,5 +1,7 @@
 let raceSourceName = 'route';
 let raceLayerName = 'raceLayer';
+let placesSourceName = 'places';
+let placesLayerName = 'placeLayer';
 
 function ShowRace(map, raceData) {
     const gpxProcessor = new GPXProcessor(raceData);
@@ -62,6 +64,7 @@ function FindBoundsOfGeoRaceSummaries(raceSummaries) {
     let longitudeList = [ ]
     let latitudeList = [ ]
 
+    // add to the lists every coordinate
     for (let i in raceSummaries.features) {
         let summary = raceSummaries.features[i];
 
@@ -83,16 +86,35 @@ function FindBoundsOfGeoRaceSummaries(raceSummaries) {
     ];
 }
 
+async function FocusOnRace(map, raceName) {
+    if (raceName == undefined) {
+        map.fitBounds( map.raceBounds );
+    } else {
+        let placesSource = map.getSource(placesSourceName);
+        let placesData = await placesSource.getData();
+        let placeInfo = placesData.features.find(element => {
+            return element.properties.filename == raceName
+        });
+
+        map.flyTo({
+            center: placeInfo.geometry.coordinates,
+            zoom: 12
+        });
+
+        ClickedRaceSummary(map, raceName);
+    }
+}
+
 async function CreateSymbols(map, raceSummaries) {
-    map.addSource('symbols', {
+    map.addSource(placesSourceName, {
         'type': 'geojson',
         'data': raceSummaries
     });
 
     map.addLayer({
-        'id': 'poi-labels',
+        'id': placesLayerName,
         'type': 'symbol',
-        'source': 'symbols',
+        'source': placesSourceName,
         'layout': {
             'text-field': ['get', 'title'],
             'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
@@ -118,48 +140,42 @@ async function CreateSymbols(map, raceSummaries) {
         }
     });
 
-    map.on('click', 'poi-labels', (e) => {
-        map.flyTo({
-            center: e.features[0].geometry.coordinates,
-            zoom: 12
-        });
+/*
+    let layerID = 'myLayer';
 
+    const mapNav = document.getElementById('inMapNav');
+    // Add checkbox and label elements for the layer.
+    const input = document.createElement('input');
+    input.type = 'checkbox';
+    input.id = layerID;
+    input.checked = true;
+    mapNav.appendChild(input);
+
+    const label = document.createElement('label');
+    label.setAttribute('for', layerID);
+    label.textContent = 'my content';
+    mapNav.appendChild(label);*/
+
+    map.on('click', placesLayerName, (e) => {
         let filename = e.features[0].properties.filename;
-
-        const link = document.createElement('a');
-        var linkText = document.createTextNode(e.features[0].properties.title);
-        link.appendChild(linkText);
-        link.title = e.features[0].properties.title;
-        link.href = "#";
-        link.onclick = function MyClick() {
-            ClickedRaceSummary(map, filename);
-        }
-
-        // create DOM element for the marker
-        /*const el = document.createElement('div');
-        el.classname = 'kev-marker';
-        el.appendChild(link);*/
-        let el = link;
-
-        let popup = new maplibregl.Popup()
-            .setLngLat(e.features[0].geometry.coordinates)
-            .setDOMContent(el)
-            .addTo(map);
-
+        const url = new URL(window.location);
+        url.searchParams.set("raceName", filename);
+        window.history.pushState({}, "", url);
+        FocusOnRace(map, filename);
     });
 
      // Change the cursor to a pointer when the it enters a feature in the 'symbols' layer.
-    map.on('mouseenter', 'poi-labels', () => {
+    map.on('mouseenter', placesLayerName, () => {
         map.getCanvas().style.cursor = 'pointer';
     });
 
     // Change it back to a pointer when it leaves.
-    map.on('mouseleave', 'poi-labels', () => {
+    map.on('mouseleave', placesLayerName, () => {
         map.getCanvas().style.cursor = '';
     });
 }
 
-async function CreateGeoMap(raceSummaries) {
+async function CreateGeoMap(raceSummaries, selectRace) {
     let raceBounds = FindBoundsOfGeoRaceSummaries(raceSummaries);
 
     // calculated via geojson.io
@@ -201,20 +217,33 @@ async function CreateGeoMap(raceSummaries) {
     // disable rotation for touch controls (mobile)
     map.touchZoomRotate.disableRotation();
 
+    map.raceBounds = raceBounds;
+
     map.on('load', async () => {
         // Add an image to use as a custom marker
         const image = await map.loadImage('./icons/MapPin.png');
         map.addImage('custom-marker', image.data)
 
         CreateSymbols(map, raceSummaries);
+
+        window.addEventListener("popstate", (event) => {
+            const params = new URLSearchParams(window.location.search);
+            let raceName = params.get('raceName');
+            FocusOnRace(map, raceName);
+        });
+
+        FocusOnRace(map, selectRace);
     });
 }
 
 async function LoadedRaceSummaries() {
+    const params = new URLSearchParams(window.location.search);
+    let raceName = params.get('raceName');
+
     await fetch("raceSummaries.geojson")
         .then(response => response.json())
         .then((data) => {
-            CreateGeoMap(data);
+            CreateGeoMap(data, raceName);
         });
 }
 
