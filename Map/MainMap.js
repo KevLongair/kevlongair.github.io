@@ -1,19 +1,81 @@
-let raceSourceName = 'route';
-let raceLayerName = 'raceLayer';
+class RouteSimulation {
+
+    #realSimulationTime = 0.0;
+    #maxSeconds = 0.0;
+    #playbackRate = 1.0;
+
+    #zeroTime = 0.0;
+    #lastTime = 0.0;
+
+    #updateFunction = undefined;
+    #animRequestID = undefined;
+
+    constructor(wallClockTime, maxSeconds) {
+        this.#realSimulationTime = wallClockTime;
+        this.#maxSeconds = maxSeconds;
+
+        this.#playbackRate = maxSeconds / wallClockTime;
+    }
+
+    _animate(timestamp) {
+        const elapsedRealTime = (timestamp - this.#zeroTime) / 1000.0;
+        const frameRealTimeMilliseconds = timestamp - this.#lastTime;
+        this.#lastTime = timestamp;
+
+        var simulatedTime = this.#playbackRate * elapsedRealTime;
+
+        var bContinueUpdate = this.#updateFunction.call(this, simulatedTime);
+
+        if (bContinueUpdate) {
+            self = this;
+            this.#animRequestID = requestAnimationFrame((timestamp) => {
+                self._animate(timestamp);
+            });
+        }
+    }
+
+    begin(updateFunction) {
+        if (typeof updateFunction !== 'function') {
+            throw new TypeError('updateFunction must be a function!');
+        }
+        this.#updateFunction = updateFunction;
+
+        self = this;
+        this.#animRequestID = requestAnimationFrame((timestamp) => {
+            self._firstFrame(timestamp);
+        });
+    }
+
+    _firstFrame(timestamp) {
+        this.#zeroTime = timestamp;
+        this.#lastTime = this.#zeroTime;
+        this._animate(timestamp);
+    }
+
+    end() {
+        cancelAnimationFrame(this.#animRequestID);
+    }
+};
+
+let routeSourceName = 'route';
+let routeLayerName = 'raceLayer';
 let placesSourceName = 'places';
 let placesLayerName = 'placeLayer';
+
+let RouteSim = undefined;
+let currentRaceName = '';
 
 function ShowRace(map, raceData) {
     const gpxProcessor = new GPXProcessor(raceData);
 
     // just skip to end for now
-    gpxProcessor.simulateToEnd();
+    //gpxProcessor.simulateToEnd();
 
     // does source exist already?
-    let source = map.getSource(raceSourceName);
+    let source = map.getSource(routeSourceName);
     if (source == undefined) {
         // no, then add it to the map
-        source = map.addSource(raceSourceName, {
+        source = map.addSource(routeSourceName, {
             'type': 'geojson',
             'data': gpxProcessor.getGeoJson()
         });
@@ -23,13 +85,13 @@ function ShowRace(map, raceData) {
     }
 
     // does layer exist already?
-    let layer = map.getLayer(raceLayerName);
+    let layer = map.getLayer(routeLayerName);
     if (layer == undefined) {
         // no, add it to the map
         map.addLayer({
-            'id': raceLayerName,
+            'id': routeLayerName,
             'type': 'line',
-            'source': raceSourceName,
+            'source': routeSourceName,
             'layout': {
                 'line-join': 'round',
                 'line-cap': 'round'
@@ -37,8 +99,9 @@ function ShowRace(map, raceData) {
             'paint': {
                 'line-color': '#888',
                 'line-width': 2
-            }
-        });
+            }},
+            placesLayerName
+        );
     } // else do nothing, layer is already present
 
 
@@ -49,6 +112,23 @@ function ShowRace(map, raceData) {
             padding: 16
         }
     );
+
+    if (RouteSim != undefined) {
+        RouteSim.end();
+    }
+    RouteSim = new RouteSimulation(10.0, gpxProcessor.getMaxSeconds());
+    RouteSim.begin((simulatedTime) => {
+        // raceResultsProcessor.simulateTo(simulatedTime);
+
+        gpxProcessor.simulateTo(simulatedTime);
+
+        map.getSource('route').setData(gpxProcessor.getGeoJson());
+        //map.getSource('myCustomRoute').setData(raceResultsProcessor.getGeoJson());
+        //map.panTo(raceResultsProcessor.getLeaderCoordinate(), {"duration": frameRealTimeMilliseconds});
+
+        //return !raceResultsProcessor.isSimulationFinished();
+        return !gpxProcessor.isSimulationFinished();
+    });
 }
 
 function ClickedRaceSummary(map, filename) {
@@ -56,6 +136,7 @@ function ClickedRaceSummary(map, filename) {
     fetch(dir + filename + '.geojson')
         .then(response => response.json())
         .then((data) => {
+            currentRaceName = filename;
             ShowRace(map, data);
         });
 }
@@ -158,10 +239,13 @@ async function CreateSymbols(map, raceSummaries) {
 
     map.on('click', placesLayerName, (e) => {
         let filename = e.features[0].properties.filename;
-        const url = new URL(window.location);
-        url.searchParams.set("raceName", filename);
-        window.history.pushState({}, "", url);
-        FocusOnRace(map, filename);
+
+        if (filename != currentRaceName) {
+            const url = new URL(window.location);
+            url.searchParams.set("raceName", filename);
+            window.history.pushState({}, "", url);
+            FocusOnRace(map, filename);
+        }
     });
 
      // Change the cursor to a pointer when the it enters a feature in the 'symbols' layer.
