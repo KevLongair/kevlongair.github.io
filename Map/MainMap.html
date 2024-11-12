@@ -3,6 +3,7 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'>
     <head>
         <title>Main Map</title>
+        <link rel="icon" type="image/x-icon" href="/favicon.ico">
         <meta property="og:description" content="Main map." />
         <meta charset='utf-8'>
         <link rel='stylesheet' href='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css'/>
@@ -13,8 +14,21 @@
     </head>
     <body>
         <div class="container">
-            <div id='map' class='route-map'></div>
+            <div id='map' class='route-map'>
+                <nav id="inMapNav" class="map-nav"></nav>
+                <div id='test' class="map-nav" style='display: none;'>
+                    <label for="distanceClass">Choose distance:</label>
+                    <select name="distanceClass" id="cars">
+                        <option value="All">All</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                    </select>
+                </div>
+            </div>
+            
             <div id='results' class='results-table' style='display: none;'>
+            <!-- <div id='results' class='results-table'> -->
                 <table>
                     <thead>
                         <tr>
