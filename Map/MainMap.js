@@ -109,7 +109,7 @@ function ShowRace(map, raceData) {
     map.fitBounds(
         gpxProcessor.getBounds(), 
         {
-            padding: 16
+            padding: 64
         }
     );
 
@@ -117,17 +117,20 @@ function ShowRace(map, raceData) {
         RouteSim.end();
     }
     RouteSim = new RouteSimulation(10.0, gpxProcessor.getMaxSeconds());
-    RouteSim.begin((simulatedTime) => {
-        // raceResultsProcessor.simulateTo(simulatedTime);
 
-        gpxProcessor.simulateTo(simulatedTime);
+    map.once('idle', (e) => {
+        RouteSim.begin((simulatedTime) => {
+            // raceResultsProcessor.simulateTo(simulatedTime);
 
-        map.getSource('route').setData(gpxProcessor.getGeoJson());
-        //map.getSource('myCustomRoute').setData(raceResultsProcessor.getGeoJson());
-        //map.panTo(raceResultsProcessor.getLeaderCoordinate(), {"duration": frameRealTimeMilliseconds});
+            gpxProcessor.simulateTo(simulatedTime);
 
-        //return !raceResultsProcessor.isSimulationFinished();
-        return !gpxProcessor.isSimulationFinished();
+            map.getSource('route').setData(gpxProcessor.getGeoJson());
+            //map.getSource('myCustomRoute').setData(raceResultsProcessor.getGeoJson());
+            //map.panTo(raceResultsProcessor.getLeaderCoordinate(), {"duration": frameRealTimeMilliseconds});
+
+            //return !raceResultsProcessor.isSimulationFinished();
+            return !gpxProcessor.isSimulationFinished();
+        });
     });
 }
 
