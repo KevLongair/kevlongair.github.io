@@ -438,6 +438,33 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
+                    -1.94277,
+                    53.463059
+                ]
+            },
+            "properties": {
+                "filename": "PadfieldPlumScamper",
+                "title": "Padfield Plum Fair Scamper",
+                "time": "2024-11-16T10:59:32+00:00",
+                "startingPoint": [
+                    -1.9427700899541378,
+                    53.46305876970291
+                ],
+                "minBound": [
+                    -1.9429415836930275,
+                    53.45845593139529
+                ],
+                "maxBound": [
+                    -1.9015926495194435,
+                    53.469766555354
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
                     -1.920802,
                     53.451713
                 ]
