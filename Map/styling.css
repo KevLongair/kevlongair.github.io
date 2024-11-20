@@ -6,19 +6,12 @@ body {
   height: 100%;
 }
 
+/* main container set to flex (but see @media)  */
 .container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   height: 100%;
-}
-
-.route-map {
-  flex: 70%;
-}
-
-.results-table {
-  flex: 30%;
 }
 
 /* Responsive layout - makes a one column layout instead of a two-column layout */
@@ -30,3 +23,54 @@ body {
     flex-direction: column;
   }
 }
+
+/* Map takes up most of the flex  */
+.route-map {
+  flex: 70%;
+}
+
+/* Results table is the rest */
+.results-table {
+  flex: 30%;
+  display: none;
+}
+
+.svg-wrapper {
+  z-index: 1;
+  position: relative;
+  display: flex;
+  flex: 30%;
+  align-self: flex-start;
+}
+
+.graph .grid {
+  stroke: #ccc;
+  stroke-dasharray: 0;
+  stroke-width: 1;
+}
+
+/* Map nav is:
+ - displayed on top
+ - right justified
+ - only on the map
+*/
+.map-nav {
+  z-index: 1;
+  /*display: flex; */
+  justify-content: flex-end;
+  position: relative;
+  display: none;
+}
+
+.map-nav input[type='checkbox'] + label {
+    background-color: #3386c0;
+    display: block;
+    cursor: pointer;
+    padding: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.map-nav input[type='checkbox'] {
+    display: none;
+}
+

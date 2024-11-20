@@ -1,17 +1,18 @@
 class GPXProcessor {
-    #gpxTrace
-    #gpxFeature
-    #geoJsonRuntimeFeature
-    #timeOffsets
-    #maxTimeOffset
-    #simulationIndex
-    #bounds
+    #gpxTrace = undefined;
+    #gpxFeature = undefined;
+    #geoJsonRuntimeFeature = undefined;
+    #timeOffsets = [];
+    #maxTimeOffset = undefined;
+    #simulationIndex = 0;
+    #bounds = undefined;
+    #lastSimulatedCoords = [];
+    #lastNormalisedTimes = [];
+    #lastSimulatedDistances = []
 
     constructor(gpxTrace) {
         this.#gpxTrace = gpxTrace;
-        this.#timeOffsets = [];
         this.#gpxFeature = gpxTrace.features[0];
-        this.#simulationIndex = 0;
 
         this.#generateOffsets();
         this.#createGeoJsonRuntime();
@@ -21,7 +22,7 @@ class GPXProcessor {
         let gpxProperties = this.#gpxFeature.properties;
 
         this.#maxTimeOffset = -Number.MAX_VALUE;
-        this.#timeOffsets = [];
+
         const Times = gpxProperties.coordinateProperties.times;
         const InitialTime = new Date(gpxProperties.time)
         for (let i in Times) {
@@ -33,18 +34,32 @@ class GPXProcessor {
             this.#maxTimeOffset = secondsDiff
         }
 
-        let coordList = this.#gpxFeature.geometry.coordinates;
-        let minBound = [coordList[0][0], coordList[0][1]];
-        let maxBound = [coordList[0][0], coordList[0][1]];
+        let coordList = this.#getOriginalCoords();
+        let minBound = [coordList[0][0], coordList[0][1], coordList[0][2]];
+        let maxBound = [coordList[0][0], coordList[0][1], coordList[0][2]];
         for (let i in coordList) {
             var coord = coordList[i];
             minBound[0] = Math.min(minBound[0], coord[0]);
             maxBound[0] = Math.max(maxBound[0], coord[0]);
             minBound[1] = Math.min(minBound[1], coord[1]);
             maxBound[1] = Math.max(maxBound[1], coord[1]);
+            minBound[2] = Math.min(minBound[2], coord[2]);
+            maxBound[2] = Math.max(maxBound[2], coord[2]);
         }
 
         this.#bounds = [minBound, maxBound];
+    }
+
+    #getOriginalCoords() {
+        return this.#gpxFeature.geometry.coordinates;
+    }
+
+    #getRuntimeCoords() {
+        return this.#geoJsonRuntimeFeature.geometry.coordinates;
+    }
+
+    #getOriginalCoordProperties() {
+        return this.#gpxFeature.properties.coordinateProperties;
     }
 
     getMaxSeconds() {
@@ -52,19 +67,33 @@ class GPXProcessor {
     }
 
     getFirstCoordinate() {
-        return this.#gpxFeature.geometry.coordinates[0]
+        return this.#getOriginalCoords()[0]
     }
     getLastCoordinate() {
-        return this.#gpxFeature.geometry.coordinates[this.#gpxFeature.geometry.coordinates.length-1]
+        return this.#getOriginalCoords()[this.#getOriginalCoords()-1]
     }
 
     getBounds() {
         return this.#bounds;
     }
 
-    getLastSimulationCoordinate() {
-        var coordinates = this.#geoJsonRuntimeFeature.geometry.coordinates;
-        return coordinates[coordinates.length-1];
+    getLastSimulationCoordinates() {
+        return this.#lastSimulatedCoords;
+    }
+
+    getLastSimulatedTimesNormalised() {
+        return this.#lastNormalisedTimes;
+    }
+
+    getLastSimulatedDistances() {
+        return this.#lastSimulatedDistances;
+    }
+
+    getLastSimulationTimeNormalised() {
+        var runTimeCoords = this.#getRuntimeCoords();
+        var originalCoords = this.#getOriginalCoords();
+
+        return Math.min(runTimeCoords.length / originalCoords.length, 1.0);
     }
 
     getOffsets() {
@@ -73,6 +102,11 @@ class GPXProcessor {
 
     getGeoJson() {
         return this.#geoJsonRuntimeFeature;
+    }
+
+    getDistance() {
+        const distances = this.#getOriginalCoordProperties().distances;
+        return distances[distances.length-1];
     }
 
     #createGeoJsonRuntime() {
@@ -90,17 +124,23 @@ class GPXProcessor {
     }
 
     simulateTo(simulatedTime) {
-        var originalCoords = this.#gpxFeature.geometry.coordinates;
+        var originalCoords = this.#getOriginalCoords();
+        var originalCoordProps = this.#getOriginalCoordProperties();
+        this.#lastSimulatedCoords = [];
+        this.#lastNormalisedTimes = [];
+        this.#lastSimulatedDistances = [];
         while ((this.#simulationIndex < originalCoords.length) && (this.#timeOffsets[this.#simulationIndex] < simulatedTime)) {
-            this.#geoJsonRuntimeFeature.geometry.coordinates.push(
-                    originalCoords[this.#simulationIndex]
-                );
+            this.#getRuntimeCoords().push( originalCoords[this.#simulationIndex] );
+            this.#lastSimulatedCoords.push( originalCoords[this.#simulationIndex] );
+            this.#lastNormalisedTimes.push( this.#timeOffsets[this.#simulationIndex] / this.getMaxSeconds() );
+            this.#lastSimulatedDistances.push( originalCoordProps.distances[this.#simulationIndex] );
+
             this.#simulationIndex++;
         }
     }
 
     isSimulationFinished() {
-        return this.#simulationIndex >= this.#gpxFeature.geometry.coordinates.length;
+        return this.#simulationIndex >= this.#getOriginalCoords().length;
     }
 
     getCoordForNormalisedTime(normalisedTime) {
@@ -108,7 +148,7 @@ class GPXProcessor {
         let i = 0;
         while (simulationTime < this.getMaxSeconds()) {
             if (simulationTime < this.#timeOffsets[i]) {
-                return this.#gpxFeature.geometry.coordinates[i];
+                return this.#getOriginalCoords()[i];
             }
             ++i
         }

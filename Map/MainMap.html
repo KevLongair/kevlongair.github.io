@@ -2,10 +2,10 @@
 <html lang="en">
 <meta name='viewport' content='width=device-width, initial-scale=1'>
     <head>
+        <meta charset='utf-8'>
         <title>Main Map</title>
         <link rel="icon" type="image/x-icon" href="/favicon.ico">
         <meta property="og:description" content="Main map." />
-        <meta charset='utf-8'>
         <link rel='stylesheet' href='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css'/>
         <link rel="stylesheet" href="styling.css">
         <script src='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js'></script>
@@ -14,11 +14,16 @@
     </head>
     <body>
         <div class="container">
+            <!--<svg width="500" height="500" viewBox="0 0 100 100">
+              <svg x="20%" width=80% viewBox="0 0 100 100">
+                <circle cx="25" cy="25" r="25" fill="blue" />
+              </svg>
+            </svg>-->
             <div id='map' class='route-map'>
                 <nav id="inMapNav" class="map-nav"></nav>
-                <div id='test' class="map-nav" style='display: none;'>
-                    <label for="distanceClass">Choose distance:</label>
-                    <select name="distanceClass" id="cars">
+                <div id='test' class="map-nav">
+                    <label for="distanceSelect">Choose distance:</label>
+                    <select name="distanceClass" id="distanceSelect">
                         <option value="All">All</option>
                         <option value="A">A</option>
                         <option value="B">B</option>
@@ -26,8 +31,22 @@
                     </select>
                 </div>
             </div>
+            <svg id="outerSvg" viewBox="0 0 720 540" preserveAspectRatio="xMidYMid meet" class="svg-wrapper">
+                <g id="xGrid">
+                  <line x1="50" x2="720" y1="490" y2="490" stroke="#ccc" stroke-width="1"></line>
+                </g>
+                <g class="labels x-labels" id="x-axis"></g>
+                <g id="yGrid">
+                  <line x1="50" x2="50" y1="0" y2="490" stroke="#ccc" stroke-width="1"></line>
+                </g>
+                <g class="labels y-labels" id="y-axis"></g>
+                <svg id="graphSvg" x="50" y="25" viewBox="0 0 320 240" preserveAspectRatio="none" width="620" height="490">
+                    <!-- <rect x="0" y="0" width="100%" height="100%" fill="#aaa" stroke="black" /> -->
+                    <polyline id='elevationLine' fill="none" stroke="#0074d9" stroke-width="2" stroke-linejoin="round" stroke-linecap="butt" points="0,0"/>
+                </svg>
+            </svg>
             
-            <div id='results' class='results-table' style='display: none;'>
+            <div id='results' class='results-table'>
             <!-- <div id='results' class='results-table'> -->
                 <table>
                     <thead>
