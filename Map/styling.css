@@ -74,3 +74,9 @@ body {
     display: none;
 }
 
+
+/* keep last for precedence */
+.nodisplay {
+  display: none;
+  /*visibility: collapse;*/
+}

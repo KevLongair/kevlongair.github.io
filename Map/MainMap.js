@@ -68,6 +68,9 @@ class SvgGraph {
         this.#elevationMax = elevationMax;
         this.#distance = distance/1000.0;
 
+        let svgOuter = document.getElementById('outerSvg');
+        svgOuter.classList.remove('nodisplay');
+
         var graphXLeftMargin = 50;
         var graphXRightMargin = 10;
         var graphYTopMargin = 10;
@@ -90,6 +93,18 @@ class SvgGraph {
 
         this.#setupYAxis(graphYTopMargin);
         this.#setupXAxis(graphXLeftMargin, graphYTopMargin, graphYBottomMargin);
+    }
+
+    #niceStringForRange(value) {
+        // show 1 dp
+        var str = value.toFixed(1);
+
+        // however, if that means it ends in zero trim so it appears as integer
+        let suffix = ".0";
+        if (str.endsWith(suffix)) {
+            str = str.slice(0, -suffix.length);
+        }
+        return str;
     }
 
     #estimateSteps(howManySteps, initialIncrement, range) {
@@ -200,7 +215,7 @@ class SvgGraph {
         minRangeText.setAttribute('text-anchor', 'end');
         minRangeText.setAttribute('dominant-baseline', 'hanging');
         minRangeText.setAttribute('fill', '#000');
-        minRangeText.textContent = this.#distance.toFixed(1);
+        minRangeText.textContent = this.#niceStringForRange(this.#distance);
         svgXAxis.appendChild(minRangeText);
 
         var xRange = this.#distance;
@@ -208,6 +223,9 @@ class SvgGraph {
         var xStepIncrement = this.#estimateSteps(6, [1, 2, 2.5, 5, 10], xRange);
         var firstXStep = xStepIncrement;
         var xSteps = Math.floor(xRange / xStepIncrement);
+        if (((xSteps*xStepIncrement)+(0.5*xStepIncrement)) > Math.round(this.#distance)) {
+            --xSteps;
+        }
 
         // range
         for (let x = 0; x < xSteps; ++x) {
@@ -234,6 +252,15 @@ class SvgGraph {
         labelText.textContent = 'Distance';
         svgXAxis.appendChild(labelText); 
     }
+
+    Hide() {
+        let svgOuter = document.getElementById('outerSvg');
+        svgOuter.classList.add('nodisplay');
+
+        // clear previous elevation points
+        var svgElevationLine = document.getElementById("elevationLine");
+        svgElevationLine.points.clear();
+    }
 };
 
 let routeSourceName = 'route';
@@ -245,7 +272,7 @@ let RouteSim = undefined;
 let gSvgGraph = undefined;
 let currentRaceName = '';
 
-function ShowRace(map, raceData) {
+async function ShowRace(map, raceData) {
     const gpxProcessor = new GPXProcessor(raceData);
 
     // just skip to end for now
@@ -289,6 +316,8 @@ function ShowRace(map, raceData) {
     var elevationMax = gpxProcessor.getBounds()[1][2];
     gSvgGraph = new SvgGraph(elevationMin, elevationMax, gpxProcessor.getDistance());
 
+    await waitForReflow();
+
     // zoom map to new race extents
     map.fitBounds(
         gpxProcessor.getBounds(), 
@@ -297,9 +326,6 @@ function ShowRace(map, raceData) {
         }
     );
 
-    if (RouteSim != undefined) {
-        RouteSim.end();
-    }
     RouteSim = new RouteSimulation(10.0, gpxProcessor.getMaxSeconds());
     map.once('idle', (e) => {
         RouteSim.begin((simulatedTime) => {
@@ -346,16 +372,6 @@ function ShowRace(map, raceData) {
     });
 }
 
-function ClickedRaceSummary(map, filename) {
-    let dir = "2024/"
-    fetch(dir + filename + '.geojson')
-        .then(response => response.json())
-        .then((data) => {
-            currentRaceName = filename;
-            ShowRace(map, data);
-        });
-}
-
 function FindBoundsOfGeoRaceSummaries(raceSummaries) {
     let longitudeList = [ ]
     let latitudeList = [ ]
@@ -382,22 +398,59 @@ function FindBoundsOfGeoRaceSummaries(raceSummaries) {
     ];
 }
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function waitForReflow() {
+  return new Promise(resolve => {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(resolve);
+    });
+  });
+}
+
+async function ResetSimulation() {
+    if (RouteSim != undefined) {
+        RouteSim.end();
+        RouteSim = undefined;
+    }
+}
+
+async function ResetMap(map) {
+    ResetSimulation();
+
+    // Hide elevation
+    if (gSvgGraph != undefined) {
+        gSvgGraph.Hide();
+        gSvgGraph = undefined;
+    }
+
+    await waitForReflow();
+
+    map.fitBounds( map.raceBounds );
+}
+
 async function FocusOnRace(map, raceName) {
     if (raceName == undefined) {
-        map.fitBounds( map.raceBounds );
+        ResetMap(map);
     } else {
+        ResetSimulation();
+
         let placesSource = map.getSource(placesSourceName);
         let placesData = await placesSource.getData();
         let placeInfo = placesData.features.find(element => {
             return element.properties.filename == raceName
         });
 
-        map.flyTo({
-            center: placeInfo.geometry.coordinates,
-            zoom: 12
-        });
-
-        ClickedRaceSummary(map, raceName);
+        let filename = raceName;
+        let dir = "2024/"
+        fetch(dir + filename + '.geojson')
+            .then(response => response.json())
+            .then((data) => {
+                currentRaceName = filename;
+                ShowRace(map, data);
+            });
     }
 }
 
