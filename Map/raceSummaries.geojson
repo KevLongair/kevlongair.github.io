@@ -14,6 +14,7 @@
             "properties": {
                 "filename": "AldermansAscent",
                 "title": "Alderman's Ascent",
+                "eventKind": "race",
                 "time": "2024-07-04T18:31:43+00:00",
                 "distance": 8365.828022405643,
                 "startingPoint": [
@@ -46,6 +47,7 @@
             "properties": {
                 "filename": "BigStone",
                 "title": "Big Stone",
+                "eventKind": "race",
                 "time": "2024-07-25T18:30:27+00:00",
                 "distance": 6284.701349032101,
                 "startingPoint": [
@@ -78,6 +80,7 @@
             "properties": {
                 "filename": "CharlesworthAndChisworthCarnival",
                 "title": "Charlesworth & Chisworth Carnival",
+                "eventKind": "race",
                 "time": "2024-07-13T13:31:46+00:00",
                 "distance": 4989.750591771427,
                 "startingPoint": [
@@ -110,6 +113,7 @@
             "properties": {
                 "filename": "ChickenRun",
                 "title": "Chicken Run",
+                "eventKind": "race",
                 "time": "2024-03-23T11:01:22+00:00",
                 "distance": 13228.366812868675,
                 "startingPoint": [
@@ -142,6 +146,7 @@
             "properties": {
                 "filename": "DCRODash",
                 "title": "D C R O Dash",
+                "eventKind": "race",
                 "time": "2024-06-19T18:30:00+00:00",
                 "distance": 8762.820507439914,
                 "startingPoint": [
@@ -174,6 +179,7 @@
             "properties": {
                 "filename": "EcclesPike",
                 "title": "Eccles Pike",
+                "eventKind": "race",
                 "time": "2024-08-14T18:31:51+00:00",
                 "distance": 5229.832838501233,
                 "startingPoint": [
@@ -206,6 +212,7 @@
             "properties": {
                 "filename": "GroovyKinderLove",
                 "title": "Groovy Kinder Love",
+                "eventKind": "race",
                 "time": "2024-09-14T10:00:11+00:00",
                 "distance": 25334.275228024653,
                 "startingPoint": [
@@ -238,6 +245,7 @@
             "properties": {
                 "filename": "HathersageGala",
                 "title": "Hathersage Gala",
+                "eventKind": "race",
                 "time": "2024-07-08T18:35:51+00:00",
                 "distance": 7274.786635242115,
                 "startingPoint": [
@@ -270,6 +278,7 @@
             "properties": {
                 "filename": "HerodFarm",
                 "title": "Herod Farm Race",
+                "eventKind": "race",
                 "time": "2024-04-17T18:31:38+00:00",
                 "distance": 5045.230829831513,
                 "startingPoint": [
@@ -302,6 +311,7 @@
             "properties": {
                 "filename": "Hope",
                 "title": "Hope",
+                "eventKind": "race",
                 "time": "2024-06-26T18:31:35+00:00",
                 "distance": 10149.086115019636,
                 "startingPoint": [
@@ -334,6 +344,7 @@
             "properties": {
                 "filename": "IanRobertsMemorial",
                 "title": "Ian Roberts Memorial",
+                "eventKind": "race",
                 "time": "2024-03-03T11:10:16+00:00",
                 "distance": 10617.470706692056,
                 "startingPoint": [
@@ -366,6 +377,7 @@
             "properties": {
                 "filename": "KentmereHorseshoe",
                 "title": "Kentmere Horseshoe",
+                "eventKind": "race",
                 "time": "2024-07-21T11:59:59+00:00",
                 "distance": 18657.898216101712,
                 "startingPoint": [
@@ -398,6 +410,7 @@
             "properties": {
                 "filename": "KinderDownfall",
                 "title": "Kinder Downfall Race",
+                "eventKind": "race",
                 "time": "2024-04-21T10:31:40+00:00",
                 "distance": 15746.765180715649,
                 "startingPoint": [
@@ -430,6 +443,7 @@
             "properties": {
                 "filename": "KinderTrog",
                 "title": "Kinder Trog",
+                "eventKind": "race",
                 "time": "2024-06-30T10:01:06+00:00",
                 "distance": 25154.593521721767,
                 "startingPoint": [
@@ -461,7 +475,8 @@
             },
             "properties": {
                 "filename": "KirkcaldyHalf",
-                "title": "Kirkcaldy Parks Running Festival (Half Marathon)",
+                "title": "Kirkcaldy Parks Running Festival",
+                "eventKind": "race",
                 "time": "2024-08-25T09:00:25+00:00",
                 "distance": 21243.14370047363,
                 "startingPoint": [
@@ -494,6 +509,7 @@
             "properties": {
                 "filename": "MountFamine",
                 "title": "Mount Famine Race",
+                "eventKind": "race",
                 "time": "2024-05-18T10:01:22+00:00",
                 "distance": 8424.653225028214,
                 "startingPoint": [
@@ -526,6 +542,7 @@
             "properties": {
                 "filename": "PadfieldPlumScamper",
                 "title": "Padfield Plum Fair Scamper",
+                "eventKind": "race",
                 "time": "2024-11-16T10:59:32+00:00",
                 "distance": 6995.024902617976,
                 "startingPoint": [
@@ -558,6 +575,7 @@
             "properties": {
                 "filename": "ShelfMoor",
                 "title": "Shelf Moor",
+                "eventKind": "race",
                 "time": "2024-09-21T09:59:12+00:00",
                 "distance": 9664.628955681183,
                 "startingPoint": [
@@ -590,6 +608,7 @@
             "properties": {
                 "filename": "ShiningTor",
                 "title": "Shining Tor",
+                "eventKind": "race",
                 "time": "2024-05-08T18:32:34+00:00",
                 "distance": 9238.440513788433,
                 "startingPoint": [
@@ -621,7 +640,8 @@
             },
             "properties": {
                 "filename": "TheCakeRace",
-                "title": "The Cake Race (10 miles)",
+                "title": "The Cake Race",
+                "eventKind": "race",
                 "time": "2024-05-11T10:11:31+00:00",
                 "distance": 15999.828707966057,
                 "startingPoint": [
@@ -654,6 +674,7 @@
             "properties": {
                 "filename": "Tideswell",
                 "title": "Tideswell",
+                "eventKind": "race",
                 "time": "2024-06-21T18:31:23+00:00",
                 "distance": 7890.138323828195,
                 "startingPoint": [
@@ -686,6 +707,7 @@
             "properties": {
                 "filename": "Windgather",
                 "title": "Windgather",
+                "eventKind": "race",
                 "time": "2024-10-13T09:59:20+00:00",
                 "distance": 22160.513918108438,
                 "startingPoint": [
@@ -702,6 +724,138 @@
                     -1.9349665381014347,
                     53.30497884191573,
                     559.4000244140625
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -1.815568,
+                    53.364742,
+                    242.0
+                ]
+            },
+            "properties": {
+                "filename": "PeakRaid_Edale",
+                "title": "Edale",
+                "eventKind": "scoreEvent",
+                "time": "2024-11-17T08:09:20+00:00",
+                "distance": 20423.395236307395,
+                "startingPoint": [
+                    -1.815567584708333,
+                    53.36474164389074,
+                    242.0
+                ],
+                "minBound": [
+                    -1.8836847133934498,
+                    53.34554892964661,
+                    233.60000610351562
+                ],
+                "maxBound": [
+                    -1.797256227582693,
+                    53.379828399047256,
+                    619.5999755859375
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -1.928341,
+                    53.379314,
+                    212.800003
+                ]
+            },
+            "properties": {
+                "filename": "PeakRaid_Hayfield",
+                "title": "Hayfield",
+                "eventKind": "scoreEvent",
+                "time": "2024-10-20T07:45:13+00:00",
+                "distance": 22786.34922674648,
+                "startingPoint": [
+                    -1.9283405598253012,
+                    53.37931375019252,
+                    212.8000030517578
+                ],
+                "minBound": [
+                    -1.9284569844603539,
+                    53.36379071697593,
+                    211.60000610351562
+                ],
+                "maxBound": [
+                    -1.8756423611193895,
+                    53.41570612974465,
+                    644.5999755859375
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -1.986383,
+                    53.438101,
+                    193.0
+                ]
+            },
+            "properties": {
+                "filename": "Spunch_Charlesworth",
+                "title": "Charlesworth",
+                "eventKind": "scoreEvent",
+                "time": "2024-07-16T17:37:03+00:00",
+                "distance": 16302.955282499803,
+                "startingPoint": [
+                    -1.9863828923553228,
+                    53.43810056336224,
+                    193.0
+                ],
+                "minBound": [
+                    -1.9927971437573433,
+                    53.41516960412264,
+                    158.39999389648438
+                ],
+                "maxBound": [
+                    -1.9610818661749363,
+                    53.441724479198456,
+                    415.0
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -1.951115,
+                    53.389786,
+                    208.199997
+                ]
+            },
+            "properties": {
+                "filename": "Spunch_LanternPike",
+                "title": "Lantern Pike",
+                "eventKind": "scoreEvent",
+                "time": "2024-06-04T17:31:24+00:00",
+                "distance": 15951.076982765713,
+                "startingPoint": [
+                    -1.9511146936565638,
+                    53.38978626765311,
+                    208.1999969482422
+                ],
+                "minBound": [
+                    -1.9860269129276276,
+                    53.377329083159566,
+                    166.1999969482422
+                ],
+                "maxBound": [
+                    -1.9337325543165207,
+                    53.39682840742171,
+                    378.79998779296875
                 ]
             }
         }
