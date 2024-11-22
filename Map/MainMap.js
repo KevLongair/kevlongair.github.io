@@ -460,33 +460,45 @@ async function CreateSymbols(map, raceSummaries) {
         'data': raceSummaries
     });
 
+    let layoutProperties = {
+        'text-field': ['get', 'title'],
+        'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+        'text-radial-offset': 0.5,
+        'text-justify': 'auto',
+        'text-font': ['Noto Sans Regular'],
+        'text-anchor': 'bottom',
+        //'text-overlap': 'always',
+        'text-optional': true,
+        'icon-image': [
+            'match',
+            ['get', 'eventKind'],
+            'race',
+            'map-pin',
+            'scoreEvent',
+            'map-map',
+            ''  // fallback
+        ],
+        'icon-size': 1.0,
+        'icon-anchor': 'bottom',
+        'icon-allow-overlap': true,
+        'icon-overlap': 'always'
+        /*,
+        'cluster': true,
+        'clusterMaxZoom': 14, // Max zoom to cluster points on
+        'clusterRadius': 50*/
+        };
+
+    let paintProperties = {
+        'text-halo-color': '#fff',
+        'text-halo-width': 1,
+    };
+
     map.addLayer({
         'id': placesLayerName,
         'type': 'symbol',
         'source': placesSourceName,
-        'layout': {
-            'text-field': ['get', 'title'],
-            'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
-            'text-radial-offset': 0.5,
-            'text-justify': 'auto',
-            'text-font': ['Noto Sans Regular'],
-            'text-anchor': 'bottom',
-            //'text-overlap': 'always',
-            'text-optional': true,
-            'icon-image': 'custom-marker',
-            'icon-size': 1.0,
-            'icon-anchor': 'bottom',
-            'icon-allow-overlap': true,
-            'icon-overlap': 'always'
-            /*,
-            'cluster': true,
-            'clusterMaxZoom': 14, // Max zoom to cluster points on
-            'clusterRadius': 50*/
-            },
-        'paint': {
-            'text-halo-color': '#fff',
-            'text-halo-width': 1,
-        }
+        'layout': layoutProperties,
+        'paint': paintProperties
     });
 
 /*
@@ -573,8 +585,11 @@ async function CreateGeoMap(raceSummaries, selectRace) {
 
     map.on('load', async () => {
         // Add an image to use as a custom marker
-        const image = await map.loadImage('./icons/MapPin.png');
-        map.addImage('custom-marker', image.data)
+        const pinImage = await map.loadImage('./icons/MapPin.png');
+        map.addImage('map-pin', pinImage.data)
+
+        const mapImage = await map.loadImage('./icons/MapPinMap.png');
+        map.addImage('map-map', mapImage.data)
 
         CreateSymbols(map, raceSummaries);
 
