@@ -195,8 +195,25 @@ async function CreateSymbols(map, raceSummaries) {
         'data': raceSummaries
     });
 
+    let zoomedOutTextFieldFormat = [
+        'upcase', ['get', 'title']
+        ];
+    let zoomedInTextFieldFormat = [
+            'format',
+            ['concat', ['get', 'title'], '\n'],
+            {'font-scale': 1.0},
+            ['concat', ['get', 'elevationCategory'], ['get', 'distanceCategory'], ': '],
+            {'font-scale': 0.75},
+            ['concat', ['number-format', ['/', ['get', 'distance'], 1000.0], {"max-fraction-digits": 1}], 'Km /'],
+            {'font-scale': 0.75},
+            ['concat', ['number-format', ['get', 'elevation'], {"max-fraction-digits": 1}], 'm'],
+            {'font-scale': 0.75},
+        ];
+
     let layoutProperties = {
-        'text-field': ['get', 'title'],
+        'text-field': [
+            'step', ['zoom'], zoomedOutTextFieldFormat, 12, zoomedInTextFieldFormat
+        ],
         'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
         'text-radial-offset': 0.5,
         'text-justify': 'auto',
@@ -251,6 +268,17 @@ async function CreateSymbols(map, raceSummaries) {
     label.setAttribute('for', layerID);
     label.textContent = 'my content';
     mapNav.appendChild(label);*/
+
+    let raceDistanceSelectors = document.querySelectorAll('.race-distance-select');
+    raceDistanceSelectors.forEach( (item) => {
+        item.addEventListener('click', (event) => {
+            var targetElement = event.currentTarget;
+            if (targetElement.checked) {
+                alert('Value ' + targetElement.value + ' got checked');
+            }
+        });
+    });
+
 
     map.on('click', placesLayerName, (e) => {
         let filename = e.features[0].properties.filename;

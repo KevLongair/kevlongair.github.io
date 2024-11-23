@@ -56,24 +56,37 @@ body {
 */
 .map-nav {
   z-index: 1;
-  /*display: flex; */
-  justify-content: flex-end;
+  display: block; 
+  /*display: flex;*/
+  float: right;
   position: relative;
-  display: none;
+  background-color: #3386c0;
+  padding: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  text-align: right;
 }
 
-.map-nav input[type='checkbox'] + label {
-    background-color: #3386c0;
-    display: block;
+.map-nav-grid {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+}
+
+.map-nav-grid input[type='checkbox'] {
+    visibility: visible;
     cursor: pointer;
-    padding: 10px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 }
 
-.map-nav input[type='checkbox'] {
-    display: none;
+.map-nav-grid label {
+    cursor: pointer;
+    user-select: none;  /* it's a bit annoying to get text highlighted via double-click */
 }
 
+.map-nav-grid input[type='checkbox']:checked + input[type='checkbox']:before {
+    content: '✔';
+    margin-right: 5px;
+    visibility: visible;
+}
 
 /* keep last for precedence */
 .nodisplay {

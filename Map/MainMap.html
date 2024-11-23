@@ -16,22 +16,15 @@
     </head>
     <body>
         <div class="container">
-            <!--<svg width="500" height="500" viewBox="0 0 100 100">
-              <svg x="20%" width=80% viewBox="0 0 100 100">
-                <circle cx="25" cy="25" r="25" fill="blue" />
-              </svg>
-            </svg>-->
             <div id='map' class='route-map'>
-                <nav id="inMapNav" class="map-nav"></nav>
-                <div id='test' class="map-nav">
-                    <label for="distanceSelect">Choose distance:</label>
-                    <select name="distanceClass" id="distanceSelect">
-                        <option value="All">All</option>
-                        <option value="A">A</option>
-                        <option value="B">B</option>
-                        <option value="C">C</option>
-                    </select>
-                </div>
+                <!--<nav id="inMapNav" class="map-nav map-nav-grid">
+                    <input type="checkbox" id="race-distance-short" value="Short" class="race-distance-select">
+                    <label for="race-distance-short">Short</label>
+                    <input type="checkbox" id="race-distance-medium" value="Medium" class="race-distance-select">
+                    <label for="race-distance-medium">Medium</label>
+                    <input type="checkbox" id="race-distance-long" value="Long" class="race-distance-select">
+                    <label for="race-distance-long">Long</label>
+                </nav>-->
             </div>
             <svg id="outerSvg" viewBox="0 0 720 540" preserveAspectRatio="xMidYMid meet" class="svg-wrapper nodisplay">
                 <g id="xGrid">
