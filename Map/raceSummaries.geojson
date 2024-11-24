@@ -222,6 +222,42 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
+                    -1.965227,
+                    53.378299,
+                    190.0
+                ]
+            },
+            "properties": {
+                "filename": "FamousGrouse",
+                "title": "Famous Grouse",
+                "eventKind": "race",
+                "time": "2024-11-24T11:00:20+00:00",
+                "distance": 8450.505848895918,
+                "elevation": 447.5999450683594,
+                "distanceCategory": "S",
+                "elevationCategory": "A",
+                "startingPoint": [
+                    -1.9652268011122942,
+                    53.37829920463264,
+                    190.0
+                ],
+                "minBound": [
+                    -1.9652790203690529,
+                    53.35532013326883,
+                    190.0
+                ],
+                "maxBound": [
+                    -1.9300768710672855,
+                    53.37832007557154,
+                    453.6000061035156
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
                     -1.941241,
                     53.377283,
                     199.399994
