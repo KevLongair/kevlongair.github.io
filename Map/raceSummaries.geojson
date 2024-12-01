@@ -258,6 +258,42 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
+                    -1.96846,
+                    53.472777,
+                    186.800003
+                ]
+            },
+            "properties": {
+                "filename": "GravyPud",
+                "title": "Gravy Pud",
+                "eventKind": "race",
+                "time": "2024-12-01T11:01:44+00:00",
+                "distance": 9007.164434718517,
+                "elevation": 340.59999084472656,
+                "distanceCategory": "S",
+                "elevationCategory": "B",
+                "startingPoint": [
+                    -1.9684600364416838,
+                    53.472776748239994,
+                    186.8000030517578
+                ],
+                "minBound": [
+                    -1.9989906158298254,
+                    53.472770461812615,
+                    168.39999389648438
+                ],
+                "maxBound": [
+                    -1.968444949015975,
+                    53.49003181792796,
+                    353.20001220703125
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
                     -1.941241,
                     53.377283,
                     199.399994
