@@ -870,6 +870,42 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
+                    -1.617352,
+                    53.249165,
+                    137.800003
+                ]
+            },
+            "properties": {
+                "filename": "PeakRaid_Baslow",
+                "title": "Baslow",
+                "eventKind": "scoreEvent",
+                "time": "2024-12-08T08:22:06+00:00",
+                "distance": 23400.31319879403,
+                "elevation": 1001.3994903564453,
+                "distanceCategory": "L",
+                "elevationCategory": "B",
+                "startingPoint": [
+                    -1.617352170869708,
+                    53.24916534125805,
+                    137.8000030517578
+                ],
+                "minBound": [
+                    -1.628628931939602,
+                    53.24906115420163,
+                    130.39999389648438
+                ],
+                "maxBound": [
+                    -1.5614761412143707,
+                    53.30580982379615,
+                    401.3999938964844
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
                     -1.815568,
                     53.364742,
                     242.0
