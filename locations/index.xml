@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Locations on Kev Longair</title>
+    <link>https://www.kevlongair.com/locations/</link>
+    <description>Recent content in Locations on Kev Longair</description>
+    <generator>Hugo</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Sun, 22 Dec 2024 23:57:22 +0000</lastBuildDate>
+    <atom:link href="https://www.kevlongair.com/locations/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kirkcaldy</title>
+      <link>https://www.kevlongair.com/locations/kirkcaldy/</link>
+      <pubDate>Sun, 22 Dec 2024 23:57:22 +0000</pubDate>
+      <guid>https://www.kevlongair.com/locations/kirkcaldy/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Glossop</title>
+      <link>https://www.kevlongair.com/locations/glossop/</link>
+      <pubDate>Sun, 22 Dec 2024 21:10:58 +0000</pubDate>
+      <guid>https://www.kevlongair.com/locations/glossop/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

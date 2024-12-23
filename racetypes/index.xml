@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Racetypes on Kev Longair</title>
+    <link>https://www.kevlongair.com/racetypes/</link>
+    <description>Recent content in Racetypes on Kev Longair</description>
+    <generator>Hugo</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Sun, 22 Dec 2024 23:57:22 +0000</lastBuildDate>
+    <atom:link href="https://www.kevlongair.com/racetypes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Road</title>
+      <link>https://www.kevlongair.com/racetypes/road/</link>
+      <pubDate>Sun, 22 Dec 2024 23:57:22 +0000</pubDate>
+      <guid>https://www.kevlongair.com/racetypes/road/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Fell</title>
+      <link>https://www.kevlongair.com/racetypes/fell/</link>
+      <pubDate>Sun, 22 Dec 2024 21:10:58 +0000</pubDate>
+      <guid>https://www.kevlongair.com/racetypes/fell/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>
