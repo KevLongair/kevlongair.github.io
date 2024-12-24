@@ -20,9 +20,6 @@
     <loc>https://www.kevlongair.com/locations/</loc>
     <lastmod>2024-12-22T23:57:22+00:00</lastmod>
   </url><url>
-    <loc>https://www.kevlongair.com/races/</loc>
-    <lastmod>2024-12-22T23:57:22+00:00</lastmod>
-  </url><url>
     <loc>https://www.kevlongair.com/racetypes/</loc>
     <lastmod>2024-12-22T23:57:22+00:00</lastmod>
   </url><url>
@@ -52,5 +49,8 @@
   </url><url>
     <loc>https://www.kevlongair.com/</loc>
     <lastmod>2024-12-07T22:38:04+00:00</lastmod>
+  </url><url>
+    <loc>https://www.kevlongair.com/races/</loc>
+    <lastmod>2023-01-01T08:00:00-07:00</lastmod>
   </url>
 </urlset>
